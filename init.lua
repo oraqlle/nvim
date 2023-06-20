@@ -1,2 +1,1 @@
 require("oraqlle")
-print("Hello")
