@@ -27,6 +27,8 @@ return require('packer').startup(function(use)
         end
     })
 
+    use 'wakatime/vim-wakatime'
+
     use {
         'nvim-treesitter/nvim-treesitter',
         run = function()
