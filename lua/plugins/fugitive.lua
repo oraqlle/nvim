@@ -3,11 +3,11 @@ return {
     config = function()
         vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 
-        local ThePrimeagen_Fugitive = vim.api.nvim_create_augroup("ThePrimeagen_Fugitive", {})
+        local oraqlle_fugitive = vim.api.nvim_create_augroup("oraqlle_fugitive", {})
 
         local autocmd = vim.api.nvim_create_autocmd
         autocmd("BufWinEnter", {
-            group = ThePrimeagen_Fugitive,
+            group = oraqlle_fugitive,
             pattern = "*",
             callback = function()
                 if vim.bo.ft ~= "fugitive" then
@@ -16,12 +16,12 @@ return {
 
                 local bufnr = vim.api.nvim_get_current_buf()
                 local opts = {buffer = bufnr, remap = false}
-                vim.keymap.set("n", "<leader>p", function()
+                vim.keymap.set("n", "<leader>po", function()
                     vim.cmd.Git('push')
                 end, opts)
 
                 -- rebase always
-                vim.keymap.set("n", "<leader>P", function()
+                vim.keymap.set("n", "<leader>PO", function()
                     vim.cmd.Git({'pull',  '--rebase'})
                 end, opts)
 
