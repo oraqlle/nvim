@@ -1,10 +1,15 @@
 require("oraqlle.remap")
 require("oraqlle.set")
-require("oraqlle.cmd")
 require("oraqlle.lazy")
 
+if (vim.cmd.Oil ~= nil) then
+    vim.keymap.set("n", "<leader>pv", vim.cmd.Oil, { desc = "Open parent directory" })
+else
+    vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+end
+
 local augroup = vim.api.nvim_create_augroup
-local oraqlle_group = augroup('ThePrimeagen', {})
+local oraqlle_group = augroup('oraqlle', {})
 
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -13,6 +18,7 @@ autocmd('LspAttach', {
     callback = function(e)
         local opts = { buffer = e.buf }
         vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+        vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
         vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
         vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
