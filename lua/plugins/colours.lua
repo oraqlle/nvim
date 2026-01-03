@@ -13,8 +13,10 @@ return {
         config = function()
             require('rose-pine').setup({
                 disable_background = true,
+                dim_inactive_windows = false,
                 styles = {
                     italic = false,
+                    transparency = true,
                 },
             })
 
